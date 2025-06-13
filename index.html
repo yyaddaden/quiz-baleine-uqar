@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiz Cétacés</title>
+    <link rel="icon" type="image/svg+xml" href="./whale-watching.svg">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+      integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark p-3">
+      <div
+        class="container-fluid px-4 d-flex justify-content-between align-items-center"
+      >
+        <!-- Logo UQAR -->
+        <a
+          class="navbar-brand d-flex align-items-center"
+          href="https://www.uqar.ca"
+          target="_blank"
+        >
+          <img
+            src="./logo-uqar.png"
+            alt="UQAR Logo"
+            height="30"
+            class="d-inline-block align-text-top me-2"
+          />
+        </a>
+
+        <!-- Droits d’auteur et liens -->
+        <div class="text-end text-light small">
+          <div>&copy; 2025 Prof. Yacine Yaddaden, Ph. D.</div>
+          <div>
+            <a
+              href="https://www.linkedin.com/in/yacineyaddaden"
+              target="_blank"
+              class="text-primary text-decoration-none me-2"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="https://www.uqar.ca/professeurs/yacine-yaddaden"
+              target="_blank"
+              class="text-primary text-decoration-none"
+            >
+              <i class="fas fa-university"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="grid bg-body-secondary m-5 p-3">
+      <!-- Page d'accueil -->
+      <div id="start-page" class="g-col">
+        <h1 style="font-variant-caps: small-caps" class="mb-4">
+          <i class="fa-solid fa-water"></i> Quel cétacé a fait ce son ?
+        </h1>
+        <p class="mb-3">
+          Ce quiz interactif vous invite à deviner à quel cétacé correspond
+          chaque son. Bonne chance !
+        </p>
+        <div class="mb-3">
+          <label for="player-name" class="form-label"
+            ><i class="fa-solid fa-user"></i> Entrez votre nom :</label
+          >
+          <input type="text" class="form-control" id="player-name" />
+        </div>
+        <button class="btn btn-primary" onclick="startQuiz()">
+          <i class="fa-solid fa-play"></i> Commencer le Quiz
+        </button>
+      </div>
+
+      <!-- Page du Quiz -->
+      <div id="quiz-page" style="display: none" class="g-col">
+        <h2
+          style="font-variant-caps: small-caps"
+          class="mb-3"
+          id="question-title"
+        ></h2>
+
+        <div id="image-container" style="display: none">
+          <img
+            id="question-image"
+            class="img-fluid mb-3"
+            alt="Cétacé"
+            width="300"
+          />
+        </div>
+
+        <div>
+          <audio controls id="question-audio" class="mb-3">
+            <source id="audio-source" src="" type="audio/mp3" />
+          </audio>
+        </div>
+
+        <div>
+          <button
+            id="show-image-btn"
+            class="btn btn-info mb-3"
+            onclick="showImage()"
+          >
+            <i class="fa-solid fa-eye"></i> À quoi ça ressemble ?
+          </button>
+        </div>
+
+        <div>
+          <form id="quiz-form">
+            <div id="options" class="mb-3"></div>
+            <button
+              type="button"
+              id="submit-button"
+              class="btn btn-success"
+              onclick="submitAnswer()"
+            >
+              <i class="fa-solid fa-check"></i> Soumettre
+            </button>
+            <div class="mt-3" id="feedback"></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Page de résultats -->
+      <div id="result-page" style="display: none">
+        <h2 style="font-variant-caps: small-caps" class="mb-4">
+          <i class="fa-solid fa-flag-checkered"></i> Résultats du Quiz
+        </h2>
+        <p id="final-score"></p>
+        <button class="btn btn-primary" onclick="restartQuiz()">
+          <i class="fa-solid fa-rotate-left"></i> Recommencer le Quiz
+        </button>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
